@@ -1,4 +1,4 @@
-cd ..package com.app.scopingproject;
+package com.app.scopingproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
