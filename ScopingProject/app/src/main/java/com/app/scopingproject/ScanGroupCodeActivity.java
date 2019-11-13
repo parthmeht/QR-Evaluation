@@ -128,22 +128,19 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
     }
 
     private void checkGroup(final String groupName){
-//
-//        if(myMap.contains(groupName)){
-//            Log.d("WOO", "WOO");
-//            startActivity(new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class));
-//        }
-
-
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
                     if(dataSnapshot.hasChild(groupName)){
-                        Intent intent = new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class);
-                        intent.putExtra("GROUP", groupName);
-                        startActivity(intent);
+                        if(dataSnapshot.child(groupName).hasChild("evaluated"))
+                            Toast.makeText(getApplicationContext(), "Group Already Evaluated", Toast.LENGTH_LONG).show();
+                        else {
+                            Intent intent = new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class);
+                            intent.putExtra("GROUP", groupName);
+                            startActivity(intent);
+                        }
                     }
             }
 

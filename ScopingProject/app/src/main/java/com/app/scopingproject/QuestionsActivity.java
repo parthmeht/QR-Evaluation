@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -63,7 +64,7 @@ public class QuestionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 RadioButton r= findViewById(choose_answer.getCheckedRadioButtonId());
-                checkNumber(i, r.getText());
+                checkNumber( r.getText());
             }
         });
         submit.setOnClickListener(new View.OnClickListener() {
@@ -86,28 +87,32 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     }
                 });
-                Intent intent = new Intent(QuestionsActivity.this, ScanGroupCodeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+
+//                Intent intent = new Intent(QuestionsActivity.this, ScanGroupCodeActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
+//                finish();
             }
         });
     }
 
     private void setScore(int avg){
         myRef.child(groupName).child(user.getUid()).child("score").setValue(avg);
+        myRef.child(groupName).child(user.getUid()).child("evaluated").setValue(true);
     }
 
-    public void checkNumber(int d, CharSequence answer){
-        if(d>=NUMBER_OF_QUESTIONS-1){
+    public void checkNumber( CharSequence answer){
+        Log.d("Value of i", String.valueOf(i));
+        if(i>=NUMBER_OF_QUESTIONS-1){
             next.setClickable(false);
             submit.setClickable(true);
         }
         else{
                 Toast.makeText(getApplicationContext(), "Your choice "+ answer,Toast.LENGTH_LONG).show();
+                myRef.child(groupName).child(user.getUid()).child("Questions").child(ALL_QUESTIONS[i]).setValue(answer);
                 if(i<ALL_QUESTIONS.length)
                     question_text.setText(ALL_QUESTIONS[++i]);
-                myRef.child(groupName).child(user.getUid()).child("Questions").child(ALL_QUESTIONS[d]).setValue(answer);
+
 
         }
 
