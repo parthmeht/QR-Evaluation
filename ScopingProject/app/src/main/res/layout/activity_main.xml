@@ -14,7 +14,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginRight="64dp"
         android:text="@string/txtTitle"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -30,18 +30,18 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="64dp"
         android:text="@string/scan_barcode"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonLeaderBoard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/leaderboard"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/btnScanBarcode"
         app:layout_constraintStart_toStartOf="@+id/btnScanBarcode"
         app:layout_constraintTop_toBottomOf="@+id/btnScanBarcode" />

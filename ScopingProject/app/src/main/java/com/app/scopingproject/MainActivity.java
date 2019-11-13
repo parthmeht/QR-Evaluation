@@ -28,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ScanQRcodeActivity.class));
             }
         });
+        findViewById(R.id.buttonLeaderBoard).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,LeaderBoardActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

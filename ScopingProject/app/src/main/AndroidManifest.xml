@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuestionsActivity"></activity>
+        <activity android:name=".LeaderBoardActivity"></activity>
+        <activity android:name=".QuestionsActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".ScanQRcodeActivity" />
-        <activity android:name=".EvaluateGroupActivity"></activity>
+        <activity android:name=".EvaluateGroupActivity" />
         <activity android:name=".ScanGroupCodeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -37,7 +38,6 @@
         android:name="com.google.android.gms.vision.DEPENDENCIES"
         android:value="barcode" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -45,11 +45,9 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-
 
 </manifest>
