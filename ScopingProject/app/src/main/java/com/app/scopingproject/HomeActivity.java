@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private TextView name;
+//    private TextView name;
     private Button scanGroupCode;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        name = findViewById(R.id.txtName);
+//        name = findViewById(R.id.txtName);
         scanGroupCode = findViewById(R.id.btnScanGroupCode);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -33,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        name.setText("Hello, "+ user.getEmail());
+//        name.setText("Hello, "+ user.getEmail());
         scanGroupCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

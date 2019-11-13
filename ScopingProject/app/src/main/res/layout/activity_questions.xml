@@ -33,13 +33,15 @@
             android:id="@+id/radioButton_choice_0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0" />
+            android:text="0"
+            android:textColorHighlight="@color/colorPrimaryDark" />
 
         <RadioButton
             android:id="@+id/radioButton_choice_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1" />
+            android:text="1"
+            android:textColorHighlight="@color/colorPrimaryDark"/>
 
         <RadioButton
             android:id="@+id/radioButton_choice_2"
@@ -47,18 +49,21 @@
             android:layout_height="wrap_content"
             android:defaultFocusHighlightEnabled="false"
             android:focusedByDefault="false"
-            android:text="2" />
+            android:text="2"
+            android:textColorHighlight="@color/colorPrimaryDark"/>
 
         <RadioButton
             android:id="@+id/radioButton_choice_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHighlight="@color/colorPrimaryDark"
             android:text="3" />
 
         <RadioButton
             android:id="@+id/radioButton_choice_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHighlight="@color/colorPrimaryDark"
             android:text="4" />
     </RadioGroup>
 
@@ -88,9 +93,11 @@
         android:id="@+id/questions_submit_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:clickable="false"
         android:focusable="false"
         android:text="Submit Answer"
+        android:textColor="@android:color/white"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +108,9 @@
         android:id="@+id/button_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:text="Next"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/questions_submit_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
