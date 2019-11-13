@@ -58,6 +58,23 @@ public class QuestionsActivity extends AppCompatActivity {
         hm = new HashMap<>();
         if (i < ALL_QUESTIONS.length)
             question_text.setText(ALL_QUESTIONS[i]);
+        myRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(groupName).hasChild(user.getUid())){
+                    Toast.makeText(getApplicationContext(),"You already evaluated this group!",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(QuestionsActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,22 +99,6 @@ public class QuestionsActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
                 i = 0;
-                /*myRef.addValueEventListener(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        int avg = 0;
-                        for(DataSnapshot child: dataSnapshot.child(groupName).child("groups").child(user.getUid()).child("Questions").getChildren()){
-                            avg += (int) child.getValue();
-                        }
-                        setScore(avg);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });*/
             }
         });
     }
