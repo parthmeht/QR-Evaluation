@@ -14,8 +14,6 @@
         <activity android:name=".ScanQRcodeActivity" />
         <activity android:name=".EvaluateGroupActivity"></activity>
         <activity android:name=".ScanGroupCodeActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".ScanQRcodeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

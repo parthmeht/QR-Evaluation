@@ -1,9 +1,5 @@
 package com.app.scopingproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,13 +10,14 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,12 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class ScanGroupCodeActivity extends AppCompatActivity {
@@ -125,28 +117,31 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
                 if (barcodes.size() != 0) {
                     if (barcodes.valueAt(0) != null) {
                         Log.d(TAG, "Group:  "+barcodes.valueAt(0).displayValue);
-                        checkGroup(barcodes.valueAt(0).displayValue);
+                        //checkGroup(barcodes.valueAt(0).displayValue);
+                        Intent intent = new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class);
+                        intent.putExtra("GROUP", barcodes.valueAt(0).displayValue);
+                        startActivity(intent);
                     }
                 }
             }
         });
     }
 
-    private void checkGroup(final String groupName){
+    /*private void checkGroup(final String groupName) {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                    if(dataSnapshot.hasChild(groupName)){
-                        if(dataSnapshot.child(groupName).hasChild(mAuth.getUid()))
-                            Toast.makeText(getApplicationContext(), "Group Already Evaluated", Toast.LENGTH_LONG).show();
-                        else {
-                            Intent intent = new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class);
-                            intent.putExtra("GROUP", groupName);
-                            startActivity(intent);
-                        }
+                if (dataSnapshot.hasChild(groupName)) {
+                    if (dataSnapshot.child(groupName).hasChild(mAuth.getUid()))
+                        Toast.makeText(getApplicationContext(), "Group Already Evaluated", Toast.LENGTH_LONG).show();
+                    else {
+                        Intent intent = new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class);
+                        intent.putExtra("GROUP", groupName);
+                        startActivity(intent);
                     }
+                }
             }
 
             @Override
@@ -154,7 +149,7 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
     @Override
     protected void onPause() {
