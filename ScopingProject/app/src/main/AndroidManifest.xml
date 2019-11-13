@@ -12,6 +12,10 @@
         <activity android:name=".QuestionsActivity"></activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".ScanQRcodeActivity" />
+        <activity android:name=".EvaluateGroupActivity"></activity>
+        <activity android:name=".ScanGroupCodeActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".ScanQRcodeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,9 +43,15 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+
 
 </manifest>
