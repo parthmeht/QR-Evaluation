@@ -55,9 +55,6 @@ public class QuestionsActivity extends AppCompatActivity {
         submit = findViewById(R.id.questions_submit_button);
         next = findViewById(R.id.button_next);
         choose_answer = findViewById(R.id.answer_choice_radio);
-        questions = new Questions();
-
-
         hm = new HashMap<>();
         if (i < ALL_QUESTIONS.length)
             question_text.setText(ALL_QUESTIONS[i]);
@@ -77,12 +74,14 @@ public class QuestionsActivity extends AppCompatActivity {
                 for (int val : hm.values()) {
                     sum += val;
                 }
+                questions = new Questions();
                 questions.setHm(hm);
                 questions.setScore(sum);
                 myRef.child(groupName).child(user.getUid()).setValue(questions);
                 Intent intent = new Intent(QuestionsActivity.this,HomeActivity.class);
                 startActivity(intent);
                 finish();
+                i = 0;
                 /*myRef.addValueEventListener(new ValueEventListener() {
 
                     @Override
