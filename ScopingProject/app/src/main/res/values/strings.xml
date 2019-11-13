@@ -4,6 +4,8 @@
     <string name="txtTitle">Get started by scanning the QR Code. </string>
     <string name="no_code_detected">No Barcode Detected</string>
     <string name="action_logout">Logout</string>
-    <string name="scan_group">Scan QR code for the group</string>
+    <string name="scan_group">Scan QR Code</string>
     <string name="leaderboard">Leaderboard</string>
+    <string name="scan_group_message">Scan group QR code to start their evaluation</string>
+    <string name="hello">Hello</string>
 </resources>
