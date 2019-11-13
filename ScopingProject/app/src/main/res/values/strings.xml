@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Quick Evaluation</string>
     <string name="scan_barcode">Scan QR code</string>
-    <string name="txtTitle">Get Started Bitch!</string>
+    <string name="txtTitle">Get Started by Scanning the QR code. </string>
     <string name="no_code_detected">No Barcode Detected</string>
+    <string name="action_logout">Logout</string>
 </resources>
