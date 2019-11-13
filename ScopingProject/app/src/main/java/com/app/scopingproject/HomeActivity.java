@@ -28,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         if(user==null){
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
         }
         name.setText("Hello, "+ user.getEmail());
     }
