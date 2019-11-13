@@ -30,9 +30,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class ScanGroupCodeActivity extends AppCompatActivity {
+
+    private static final Set<String> myMap = new HashSet<String>() {{
+        add("group1");
+        add("group6");
+    }};
+
+
 
     private static final String TAG = "ScanGroupCodeActivity";
     SurfaceView surfaceView;
@@ -50,9 +63,7 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scan_group_code);
         surfaceView = findViewById(R.id.surfaceViewGroup);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = firebaseDatabase.getReference("scoping-project/groups");
-
-
+        myRef = firebaseDatabase.getReference("groups");
     }
 
     private void initialiseDetectorsAndSources() {
@@ -110,8 +121,6 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
                     if (barcodes.valueAt(0) != null) {
                         Log.d(TAG, "Group:  "+barcodes.valueAt(0).displayValue);
                         checkGroup(barcodes.valueAt(0).displayValue);
-
-
                     }
                 }
             }
@@ -119,21 +128,23 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
     }
 
     private void checkGroup(final String groupName){
-        Log.d("Scanned", "woo");
+//
+//        if(myMap.contains(groupName)){
+//            Log.d("WOO", "WOO");
+//            startActivity(new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class));
+//        }
+
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("GROUPSIZ", String.valueOf(dataSnapshot.exists()));
-                for(DataSnapshot child: dataSnapshot.getChildren()){
-                    if(child.getKey() == groupName){
-                        startActivity(new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class));
-                        Log.d("Scanned", "woo");
+
+
+                    if(dataSnapshot.hasChild(groupName)){
+                        Intent intent = new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class);
+                        intent.putExtra("GROUP", groupName);
+                        startActivity(intent);
                     }
-                }
-//                if (dataSnapshot.hasChild(groupName)) {
-//
-//                }
             }
 
             @Override
