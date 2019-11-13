@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "373067778313",
+    "firebase_url": "https://scoping-project.firebaseio.com",
+    "project_id": "scoping-project",
+    "storage_bucket": "scoping-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373067778313:android:d6d95f2179bb7f1038abd8",
+        "android_client_info": {
+          "package_name": "com.app.scopingproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373067778313-nvv70hdu28780i0ngr5f8sl4ldg6aikb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.scopingproject",
+            "certificate_hash": "20ea707ddd073ba028ab20804b712afffcb64bff"
+          }
+        },
+        {
+          "client_id": "373067778313-1dn00lqu2p9n70di7gi63skjv3791ali.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJen3Lwtb7k8yiMuxU8VtdSHgpOIONYZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373067778313-1dn00lqu2p9n70di7gi63skjv3791ali.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

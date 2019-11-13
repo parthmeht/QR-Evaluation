@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -13,29 +14,40 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class ScanQRcodeActivity extends AppCompatActivity {
 
+    private static final String TAG = "ScanQRcodeActivity";
     SurfaceView surfaceView;
     //TextView txtBarcodeValue;
     private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qrcode);
-        surfaceView = findViewById(R.id.surfaceView);
+        surfaceView = findViewById(R.id.surfaceView);// Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
     }
 
     private void initialiseDetectorsAndSources() {
@@ -92,14 +104,48 @@ public class ScanQRcodeActivity extends AppCompatActivity {
                 if (barcodes.size() != 0) {
                     //Authenticate the data first,
                     if (barcodes.valueAt(0) != null) {
-                        Intent intent = new Intent(ScanQRcodeActivity.this, HomeActivity.class);
-                        //pass username and ID
-                        intent.putExtra("data", barcodes.valueAt(0).displayValue);
-                        startActivity(intent);
+                        String[] data = barcodes.valueAt(0).displayValue.split("\n");
+                        Log.v(TAG, Arrays.toString(data));
+                        Log.v(TAG, "Email Id: "+data[0]);
+                        Log.v(TAG, "Password: "+data[1]);
+                        signIn(data[0],data[1]);
                     }
                 }
             }
         });
+    }
+
+    public void signIn(String email, String password){
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(ScanQRcodeActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                            updateUI(null);
+                        }
+                    }
+                });
+    }
+
+    private void updateUI(FirebaseUser user) {
+        if (user!=null){
+            Intent intent = new Intent(ScanQRcodeActivity.this, HomeActivity.class);
+            intent.putExtra(MainActivity.USER, user);
+            startActivity(intent);
+        }
     }
 
 
