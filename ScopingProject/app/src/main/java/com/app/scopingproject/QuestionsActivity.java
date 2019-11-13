@@ -28,7 +28,13 @@ public class QuestionsActivity extends AppCompatActivity {
 
     static final int NUMBER_OF_QUESTIONS = 7;
     private static int i = 0;
-    String[] ALL_QUESTIONS = {"Question_1", "Question_2", "Question_3", "Question_4", "Question_5", "Question_6", "Question_7"};
+    String[] ALL_QUESTIONS = {"Poster content is of professional quality and indicates a master of the project subject matter. *",
+            "The presentation is organised, engaging and includes a thorough description of the design and the implementation of the design. *",
+            "All team members are suitably attired, are polite, demonstrate full knowledge of material, and can answer all relevant questions. *",
+            "The work product(model, prototype, documentation set or computer simulation) is of professional quality in all respects *",
+            "The team implemented novel approaches and/or solutions in the development of the project. *",
+            "The project has the potential to enhance the reputation of the Innovative Computing Project and/or CCI/DSI. *",
+            "The team successfully explained the scope and results of their project in no more than 5 minutes. *"};
     RadioGroup choose_answer;
     private TextView question_text;
     private String groupName;
