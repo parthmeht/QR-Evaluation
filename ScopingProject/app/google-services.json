@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "373067778313-iglujve0nfunilh712i2hr69r5ht9paa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.scopingproject",
+            "certificate_hash": "4a9665b5aeacea28eeced6b359ae5e0790b91292"
+          }
+        },
+        {
           "client_id": "373067778313-nvv70hdu28780i0ngr5f8sl4ldg6aikb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

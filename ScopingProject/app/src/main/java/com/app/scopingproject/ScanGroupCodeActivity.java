@@ -23,6 +23,11 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -32,6 +37,10 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
     private static final String TAG = "ScanGroupCodeActivity";
     SurfaceView surfaceView;
     private BarcodeDetector barcodeDetector;
+
+    private DatabaseReference myRef;
+    private FirebaseDatabase firebaseDatabase;
+
     private CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
 
@@ -40,6 +49,9 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_group_code);
         surfaceView = findViewById(R.id.surfaceViewGroup);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = firebaseDatabase.getReference("scoping-project/groups");
+
 
     }
 
@@ -97,14 +109,39 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
                 if (barcodes.size() != 0) {
                     if (barcodes.valueAt(0) != null) {
                         Log.d(TAG, "Group:  "+barcodes.valueAt(0).displayValue);
-                        //Toast.makeText(ScanGroupCodeActivity.this, "Group:  "+barcodes.valueAt(0).displayValue, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ScanGroupCodeActivity.this, EvaluateGroupActivity.class));
+                        checkGroup(barcodes.valueAt(0).displayValue);
+
+
                     }
                 }
             }
         });
     }
 
+    private void checkGroup(final String groupName){
+        Log.d("Scanned", "woo");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("GROUPSIZ", String.valueOf(dataSnapshot.exists()));
+                for(DataSnapshot child: dataSnapshot.getChildren()){
+                    if(child.getKey() == groupName){
+                        startActivity(new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class));
+                        Log.d("Scanned", "woo");
+                    }
+                }
+//                if (dataSnapshot.hasChild(groupName)) {
+//
+//                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     @Override
     protected void onPause() {
