@@ -40,6 +40,9 @@ import java.util.Set;
 
 public class ScanGroupCodeActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+
     private static final Set<String> myMap = new HashSet<String>() {{
         add("group1");
         add("group6");
@@ -62,6 +65,8 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_group_code);
         surfaceView = findViewById(R.id.surfaceViewGroup);
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         myRef = firebaseDatabase.getReference("groups");
     }
@@ -134,7 +139,7 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
 
 
                     if(dataSnapshot.hasChild(groupName)){
-                        if(dataSnapshot.child(groupName).hasChild("evaluated"))
+                        if(dataSnapshot.child(groupName).hasChild(mAuth.getUid()))
                             Toast.makeText(getApplicationContext(), "Group Already Evaluated", Toast.LENGTH_LONG).show();
                         else {
                             Intent intent = new Intent(ScanGroupCodeActivity.this, QuestionsActivity.class);
