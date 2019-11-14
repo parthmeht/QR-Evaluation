@@ -40,6 +40,7 @@ public class ScanQRcodeActivity extends AppCompatActivity {
     private CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     private FirebaseAuth mAuth;
+    int count=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,14 +102,17 @@ public class ScanQRcodeActivity extends AppCompatActivity {
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
-                if (barcodes.size() != 0) {
-                    //Authenticate the data first,
-                    if (barcodes.valueAt(0) != null) {
-                        String[] data = barcodes.valueAt(0).displayValue.split("\n");
-                        Log.v(TAG, Arrays.toString(data));
-                        Log.v(TAG, "Email Id: "+data[0]);
-                        Log.v(TAG, "Password: "+data[1]);
-                        signIn(data[0],data[1]);
+                if(count==0) {
+                    if (barcodes.size() != 0) {
+                        //Authenticate the data first,
+                        if (barcodes.valueAt(0) != null) {
+                            count++;
+                            String[] data = barcodes.valueAt(0).displayValue.split("\n");
+                            Log.v(TAG, Arrays.toString(data));
+                            Log.v(TAG, "Email Id: " + data[0]);
+                            Log.v(TAG, "Password: " + data[1]);
+                            signIn(data[0], data[1]);
+                        }
                     }
                 }
             }
