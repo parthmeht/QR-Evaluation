@@ -25,8 +25,6 @@ import java.util.HashMap;
 
 public class QuestionsActivity extends AppCompatActivity {
 
-
-    static final int NUMBER_OF_QUESTIONS = 7;
     private static int i = 0;
     String[] ALL_QUESTIONS = {"Poster content is of professional quality and indicates a master of the project subject matter. *",
             "The presentation is organised, engaging and includes a thorough description of the design and the implementation of the design. *",
@@ -45,7 +43,6 @@ public class QuestionsActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private Questions questions;
     private HashMap<String, Integer> hm;
-    int countNumber =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +62,12 @@ public class QuestionsActivity extends AppCompatActivity {
         hm = new HashMap<>();
         if (i < ALL_QUESTIONS.length)
             question_text.setText(ALL_QUESTIONS[i]);
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(groupName).hasChild(user.getUid())){
-                    if(countNumber == 0)
-                        Toast.makeText(getApplicationContext(),"You already evaluated this group!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"You already evaluated this group!",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(QuestionsActivity.this,HomeActivity.class);
                     startActivity(intent);
                     finish();
@@ -93,7 +89,6 @@ public class QuestionsActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                countNumber = 1;
                 RadioButton radioButton = findViewById(choose_answer.getCheckedRadioButtonId());
                 hm.put(String.valueOf(i+1), Integer.parseInt(radioButton.getText().toString()));
                 int sum = 0;
@@ -112,16 +107,10 @@ public class QuestionsActivity extends AppCompatActivity {
         });
     }
 
-    private void setScore(int avg) {
-        myRef.child(groupName).child(user.getUid()).child("score").setValue(avg);
-        myRef.child(groupName).child(user.getUid()).child("evaluated").setValue(true);
-    }
-
     public void checkNumber(String answer) {
         Log.d("Value of i", String.valueOf(i));
         Toast.makeText(getApplicationContext(), "Your choice " + answer, Toast.LENGTH_LONG).show();
         hm.put(String.valueOf(i+1), Integer.parseInt(answer));
-        //myRef.child(groupName).child(user.getUid()).child("Questions").child(ALL_QUESTIONS[i]).setValue(answer);
         if (i < ALL_QUESTIONS.length)
             question_text.setText(ALL_QUESTIONS[++i]);
         if (i==ALL_QUESTIONS.length-1) {
