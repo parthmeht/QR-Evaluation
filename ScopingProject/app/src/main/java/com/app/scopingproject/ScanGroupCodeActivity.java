@@ -45,9 +45,9 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
     private static final String TAG = "ScanGroupCodeActivity";
     SurfaceView surfaceView;
     private BarcodeDetector barcodeDetector;
-
-    private DatabaseReference myRef;
-    private FirebaseDatabase firebaseDatabase;
+//
+//    private DatabaseReference myRef;
+//    private FirebaseDatabase firebaseDatabase;
 
     private CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
@@ -59,8 +59,9 @@ public class ScanGroupCodeActivity extends AppCompatActivity {
         surfaceView = findViewById(R.id.surfaceViewGroup);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = firebaseDatabase.getReference("groups");
+//        firebaseDatabase = FirebaseDatabase.getInstance();
+//        myRef = firebaseDatabase.getReference("groups");
+//
     }
 
     private void initialiseDetectorsAndSources() {

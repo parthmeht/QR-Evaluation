@@ -45,6 +45,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private Questions questions;
     private HashMap<String, Integer> hm;
+    int countNumber =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,8 @@ public class QuestionsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(groupName).hasChild(user.getUid())){
-                    Toast.makeText(getApplicationContext(),"You already evaluated this group!",Toast.LENGTH_LONG).show();
+                    if(countNumber == 0)
+                        Toast.makeText(getApplicationContext(),"You already evaluated this group!",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(QuestionsActivity.this,HomeActivity.class);
                     startActivity(intent);
                     finish();
@@ -91,6 +93,7 @@ public class QuestionsActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                countNumber = 1;
                 RadioButton radioButton = findViewById(choose_answer.getCheckedRadioButtonId());
                 hm.put(String.valueOf(i+1), Integer.parseInt(radioButton.getText().toString()));
                 int sum = 0;
