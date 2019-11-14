@@ -49,7 +49,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
                         int score = eval.child("score").getValue(Integer.class);
                         group.setScore(group.getScore()+score);
                     }
-                    group.setAvgScore(group.getScore()/group.getNoOfEvaluators());
+                    group.setAvgScore((float)group.getScore()/group.getNoOfEvaluators());
                     Log.v(TAG,group.toString());
                     groups.add(group);
                 }

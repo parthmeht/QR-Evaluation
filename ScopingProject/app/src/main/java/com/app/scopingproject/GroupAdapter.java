@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
@@ -40,7 +41,8 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         TextView groupNameTextView = holder.groupNameTextView;
         groupNameTextView.setText(group.getName());
         TextView avgScoreTextView = holder.avgScoreTextView;
-        avgScoreTextView.setText(String.valueOf(group.getAvgScore()));
+        DecimalFormat df = new DecimalFormat("0.##");
+        avgScoreTextView.setText(df.format(group.getAvgScore()));
     }
 
     @Override
