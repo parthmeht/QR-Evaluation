@@ -1,7 +1,7 @@
 # Quick Evaluation
 
-[![license](https://img.shields.io/github/license/Dikshali/QR-code-scanner?style=flat-square)](https://github.com/Dikshali/QR-code-scanner/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/Dikshali/QR-code-scanner?style=flat-square)](https://github.com/Dikshali/QR-code-scanner/issues)
+[![license](https://img.shields.io/github/license/parthmeht/QR-code-scanner?style=flat-square)](https://github.com/parthmeht/QR-Evaluation/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/parthmeht/QR-code-scanner?style=flat-square)](https://github.com/parthmeht/QR-Evaluation/issues)
 
 ### **Scenario:**  
 A case where students are expected to create a poster and present it during a poster session. During the poster session there are examiners that will be required to visit each group. The application enables examiner to grade the poster based on a simple list of questions.
