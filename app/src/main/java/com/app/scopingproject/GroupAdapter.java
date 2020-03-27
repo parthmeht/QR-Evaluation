@@ -58,8 +58,8 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            groupNameTextView = (TextView) itemView.findViewById(R.id.groupNameTextView);
-            avgScoreTextView = (TextView) itemView.findViewById(R.id.avgScoreTextView);
+            groupNameTextView = itemView.findViewById(R.id.groupNameTextView);
+            avgScoreTextView = itemView.findViewById(R.id.avgScoreTextView);
         }
     }
 }
